@@ -2,10 +2,18 @@ import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { App } from './app';
+import { Header } from './header';
+import { Contacts } from './contacts/contacts';
+import { ContactDetail } from './contacts/contact-detail/contact-detail';
+import { ContactList } from './contacts/contact-list/contact-list';
 
 @NgModule({
   declarations: [
-    App
+    App,
+    Header,
+    Contacts,
+    ContactDetail,
+    ContactList
   ],
   imports: [
     BrowserModule
