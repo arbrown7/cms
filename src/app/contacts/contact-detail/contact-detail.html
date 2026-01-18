@@ -1,1 +1,16 @@
-<p>contact-detail works!</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2>{{ selectedContact.name }}</h2>
+        <div class="pull-left">
+            <img src="{{ selectedContact.imageUrl }}" alt="{{ selectedContact.name }}">
+        </div>
+        <div class="pull-right">
+            <a class="btn btn-primary">Edit</a>
+            <a class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <p><strong>Email: </strong>{{ selectedContact.email }}</p>
+        <p><strong>Phone: </strong>{{ selectedContact.phone }}</p>
+    </div>
+</div>
