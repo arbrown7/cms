@@ -7,6 +7,10 @@ import { Contacts } from './contacts/contacts';
 import { ContactDetail } from './contacts/contact-detail/contact-detail';
 import { ContactList } from './contacts/contact-list/contact-list';
 import { ContactItem } from './contacts/contact-item/contact-item';
+import { Documents } from './documents/documents';
+import { DocumentList } from './documents/document-list/document-list';
+import { DocumentItem } from './documents/document-item/document-item';
+import { DocumentDetail } from './documents/document-detail/document-detail';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,11 @@ import { ContactItem } from './contacts/contact-item/contact-item';
     Contacts,
     ContactDetail,
     ContactList,
-    ContactItem
+    ContactItem,
+    Documents,
+    DocumentList,
+    DocumentItem,
+    DocumentDetail
   ],
   imports: [
     BrowserModule
