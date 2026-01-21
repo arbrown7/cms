@@ -9,6 +9,7 @@
         <cms-contact-item
         *ngFor="let contactEl of contacts" 
         [contact]="contactEl"
+        (click)="onSelected(contactEl)"
         ></cms-contact-item>
     </div>
 </div>
