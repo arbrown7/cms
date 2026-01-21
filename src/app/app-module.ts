@@ -11,6 +11,9 @@ import { Documents } from './documents/documents';
 import { DocumentList } from './documents/document-list/document-list';
 import { DocumentItem } from './documents/document-item/document-item';
 import { DocumentDetail } from './documents/document-detail/document-detail';
+import { MessageItem } from './messages/message-item/message-item';
+import { MessageEdit } from './messages/message-edit/message-edit';
+import { MessageList } from './messages/message-list/message-list';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { DocumentDetail } from './documents/document-detail/document-detail';
     Documents,
     DocumentList,
     DocumentItem,
-    DocumentDetail
+    DocumentDetail,
+    MessageItem,
+    MessageEdit,
+    MessageList
   ],
   imports: [
     BrowserModule
