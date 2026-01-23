@@ -14,6 +14,7 @@ export class MessageEdit {
   currentSender: string = 'Autumn';
 
   onSendMessage() {
+    event.preventDefault();
     //Get the value stored in the subject input element
     const currentSubject = this.subjectRef.nativeElement.value;
     //Get the value stored in the msgText input element

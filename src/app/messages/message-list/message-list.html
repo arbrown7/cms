@@ -12,6 +12,7 @@
                   <!--Add tag to load the MessageItemComponent-->
                   <cms-message-item 
                   *ngFor="let messageEl of messages"
+                  [message]="messageEl"
                   ></cms-message-item>
                </div>
             </div>
@@ -19,7 +20,7 @@
          <div class="panel-footer">
             <!--Add tag to load the MessageEditComponent-->
             <cms-message-edit
-            (addMessageEvent)="onAddMessage()"
+            (addMessageEvent)="onAddMessage($event)"
             ></cms-message-edit>
          </div>
       </div>
