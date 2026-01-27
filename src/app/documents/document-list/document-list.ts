@@ -10,11 +10,11 @@ import { Document } from '../document.model';
 export class DocumentList {
   @Output() selectedDocumentEvent = new EventEmitter<Document>();
   documents: Document[] = [
-    new Document(1, "doc 1", "desc 1", "#"),
-    new Document(2, "doc 2", "desc 2", "#"),
-    new Document(3, "doc 3", "desc 3", "#"),
-    new Document(4, "doc 4", "desc 5", "#"),
-    new Document(5, "doc 5", "desc 5", "#")
+    new Document(1, "A Random Document Title", "A random document description", "https://example.com"),
+    new Document(2, "How to Create a Custom Directive", "Angular instruction manual", "https://example.com"),
+    new Document(3, "Why are Whales Blue?", "A deep dive into the world of whales and their blue hue", "https://example.com"),
+    new Document(4, "Dumpster Rental Form", "Contract for Dumpster Rentals for Draper City", "https://example.com"),
+    new Document(5, "Class Notes", "My notes for this class", "https://example.com")
   ]
 
   onSelectedDocument(document: Document) {
