@@ -4,5 +4,10 @@ export class Message {
     //msgText—the text of the message
     //sender—the sender of the message
 
-    constructor(public id: number, public subject: string, public msgText: string, public sender: string) {}
+    constructor(
+        public id: string, 
+        public subject: string, 
+        public msgText: string, 
+        public sender: string
+    ) {}
 }

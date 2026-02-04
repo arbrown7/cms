@@ -23,7 +23,7 @@ export class MessageEdit {
     //Assign a hardcoded number to the id property of the new Message object
     //Assign the value of the currentSender class variable to the sender property of the new Message object
     //Assign the values retrieved from the subject and msgText input elements to the corresponding properties of the new Message object
-    const newMessage = new Message(1, currentSubject, currentMsgText, this.currentSender);
+    const newMessage = new Message('1', currentSubject, currentMsgText, this.currentSender);
     //Call the addMessageEvent emitter’s emit() method and pass it the new Message object just created
     this.addMessageEvent.emit(newMessage);
   }
