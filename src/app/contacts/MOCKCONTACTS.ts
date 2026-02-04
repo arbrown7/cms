@@ -277,5 +277,13 @@ export const MOCKCONTACTS: Contact[] = [
       group: null
     }
   ]
-  }
+  },
+  {
+    id: '56',
+    name: 'Autumnn Ross',
+    email: 'bro23081@byui.edu',
+    phone: '123-456-7890',
+    imageUrl: '../../assets/images/rossa.jpg',
+    group: null
+  },
 ];

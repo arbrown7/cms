@@ -12,7 +12,7 @@ export class MessageEdit {
   @ViewChild('subject') subjectRef: ElementRef;
   @ViewChild('msgText') msgTextRef: ElementRef;
   @Output() addMessageEvent = new EventEmitter<Message>();
-  currentSender: string = 'Autumn';
+  currentSender: string = '56';
 
   constructor(private messageService: MessageService) {}
 
