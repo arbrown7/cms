@@ -5,5 +5,11 @@ export class Document {
     //url—the URL of where the file is located
     //children—a list of document objects that are related to the current document
 
-    constructor(public id: number, public name: string, public description: string, public url: string, public children?: []) {}
+    constructor(
+        public id: string, 
+        public name: string, 
+        public description: string, 
+        public url: string, 
+        public children?: []
+    ) {}
 }
