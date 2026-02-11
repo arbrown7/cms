@@ -38,4 +38,9 @@ export class DocumentDetail implements OnInit {
       this.nativeWindow.open(this.selectedDocument.url)
     }
   }
+
+  onDelete() {
+   this.documentService.deleteDocument(this.selectedDocument);
+   this.router.navigate(['/documents']);
+  }
 }
