@@ -2,15 +2,14 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <div class="clearfix">
-        <h2>Contacts</h2> <a class="btn btn-primary pull-right" cursor="pointer">New Contact</a></div>
+        <h2>Contacts</h2> <a class="btn btn-primary pull-right" cursor="pointer" [routerLink]="['new']">New Contact</a></div>
     </div>
   <div class="panel-body">
     <div class="col-xs-12">
         <cms-contact-item
         *ngFor="let contactEl of contacts" 
         [contact]="contactEl"
-        (click)="onSelected(contactEl)"
         ></cms-contact-item>
     </div>
-</div>
+</div> 
 </div>

@@ -17,6 +17,7 @@ import { MessageList } from './messages/message-list/message-list';
 import { Dropdown } from './shared/dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { DocumentEdit } from './documents/document-edit/document-edit';
+import { ContactEdit } from './contacts/contact-edit/contact-edit';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DocumentEdit } from './documents/document-edit/document-edit';
     MessageEdit,
     MessageList,
     Dropdown,
-    DocumentEdit
+    DocumentEdit,
+    ContactEdit
   ],
   imports: [
     BrowserModule,
