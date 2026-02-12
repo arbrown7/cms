@@ -24,4 +24,9 @@ export class ContactDetail {
     });
   }
 
+  onDelete() {
+   this.contactService.deleteContact(this.selectedContact);
+   this.router.navigate(['/contacts']);
+  }
+
 }
