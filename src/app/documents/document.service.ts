@@ -62,9 +62,26 @@ export class DocumentService {
     }
   
     this.maxDocumentId++;
-    
+
     newDocument.id = this.maxDocumentId.toString();
     this.documents.push(newDocument);
+    this.documentListChangedEvent.next(this.documents.slice());
+  }
+
+  updateDocument(originalDocument: Document, newDocument: Document) {
+    if (originalDocument === undefined || null) {
+      return;
+    } else if (newDocument === undefined || null) {
+      return;
+    }
+
+    let pos = this.documents.indexOf(originalDocument);
+    if (pos < 0 ) {
+      return;
+    }
+
+    newDocument.id = originalDocument.id;
+    this.documents[pos] = newDocument; 
     this.documentListChangedEvent.next(this.documents.slice());
   }
 }
