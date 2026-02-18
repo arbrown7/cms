@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class DocumentList implements OnInit, OnDestroy{
   documents: Document[] = [];
-  subscription: Subscription
+  subscription: Subscription;
 
   constructor(private documentService: DocumentService) {}
 
