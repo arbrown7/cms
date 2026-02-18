@@ -8,7 +8,7 @@ import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
 })
 export class DocumentService {
   documents: Document[];
-  //documentSelectedEvent = new EventEmitter<Document>();
+  documentSelectedEvent = new EventEmitter<Document>();
   //documentChangedEvent = new EventEmitter<Document[]>();
   documentListChangedEvent = new Subject<Document[]>();
   maxDocumentId: number;
@@ -57,7 +57,7 @@ export class DocumentService {
   }
 
   addDocument(newDocument: Document) {
-    if (newDocument === undefined || null) {
+    if (!newDocument) {
       return;
     }
   
@@ -69,9 +69,7 @@ export class DocumentService {
   }
 
   updateDocument(originalDocument: Document, newDocument: Document) {
-    if (originalDocument === undefined || null) {
-      return;
-    } else if (newDocument === undefined || null) {
+    if (!originalDocument || !newDocument) {
       return;
     }
 
