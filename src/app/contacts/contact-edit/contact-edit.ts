@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Contact } from '../contact.model';
 
 @Component({
   selector: 'cms-contact-edit',
@@ -7,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './contact-edit.css',
 })
 export class ContactEdit {
+
+  onSubmit(f) {
+
+  }
+
+  onCancel() {
+
+  }
 
 }

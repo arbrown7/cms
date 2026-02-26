@@ -1,15 +1,19 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <form id="contact-edit">
+    <form id="contact-edit" (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="row">
         <div class="col-sm-12 form-group">
           <label for="name">Name:</label>
           <input
             type="text"
             id="name"
+            name="name"
+            [ngModel]="contact?.name"
+            #name="ngModel"
             class="form-control required"
             size="120"
-            max="120">
+            max="120"
+            required>
         </div>
       </div>
 
@@ -19,11 +23,18 @@
           <input
             type="text"
             id="email"
+            name="email"
+            [ngModel]="contact?.email"
+            #email="ngModel"
+            pattern=“[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$”
             class="form-control required"
             size="120"
-            max="255">
+            max="255"
+            required>
         </div>
       </div>
+
+      <div class="alert alert-danger" *ngIf="!email.valid && email.touched">Enter a valid Email address.</div>
 
       <div class="row">
         <div class="col-sm-12 form-group">
@@ -31,12 +42,16 @@
           <input
             type="text"
             id="phone"
+            name="phone"
+            [ngModel]="contact?.phone"
+            pattern="\D*([2-9]\d{2})(\D*)([2-9]\d{2})(\D*)(\d{4})\D*"
             class="form-control invalid"
             size="150"
             max="255">
-
         </div>
       </div>
+
+      <div class="alert alert-danger" *ngIf="!phone.valid && phone.touched">Enter a valid phone number.</div>
 
       <div class="row">
         <div class="col-sm-12 form-group">
@@ -44,11 +59,15 @@
           <input
             type="text"
             id="imageUrl"
+            name="imageUrl"
+            [ngModel]="contact?.imageUrl"
             class="form-control"
             size="150"
             max="255">
         </div>
       </div>
+
+      <div class="alert alert-danger" *ngIf="(!name.valid && name.untouched) || (!email.valid && email.untouched)">The Name and Email fields are required.</div>
 
       <div class="row">
         <div class="form-group">
@@ -72,7 +91,7 @@
 
       <div class="row">
         <div class="col-xs-12 btn-toolbar">
-          <button class="btn btn-success" type="submit">Save</button>
+          <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
           <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
         </div>
       </div>
