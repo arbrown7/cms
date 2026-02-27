@@ -8,7 +8,7 @@ import { MOCKCONTACTS } from './MOCKCONTACTS';
   providedIn: 'root',
 })
 export class ContactService {
-  contacts : Contact[] = [];
+  contacts: Contact[] = [];
   contactSelectedEvent = new EventEmitter<Contact>();
   //contactChangedEvent = new EventEmitter<Contact[]>();
   contactListChangedEvent = new Subject<Contact[]>();
@@ -34,13 +34,13 @@ export class ContactService {
   }
   //end of AI generated code
 
-  deleteContact(contact: Contact) { 
+  deleteContact(contact: Contact) {
     if (!contact) {
-        return;
+      return;
     }
     const pos = this.contacts.indexOf(contact);
     if (pos < 0) {
-        return;
+      return;
     }
     this.contacts.splice(pos, 1);
     this.contactListChangedEvent.next(this.contacts.slice());
@@ -59,30 +59,30 @@ export class ContactService {
     return maxId;
   }
 
-    addContact(newContact: Contact) {
-      if (!newContact) {
-        return;
-      }
-    
-      this.maxContactId++;
-  
-      newContact.id = this.maxContactId.toString();
-      this.contacts.push(newContact);
-      this.contactListChangedEvent.next(this.contacts.slice());
+  addContact(newContact: Contact) {
+    if (!newContact) {
+      return;
     }
-  
-    updateDocument(originalContact: Contact, newContact: Contact) {
-      if (!originalContact || !newContact) {
-        return;
-      }
-  
-      let pos = this.contacts.indexOf(originalContact);
-      if (pos < 0 ) {
-        return;
-      }
-  
-      newContact.id = originalContact.id;
-      this.contacts[pos] = newContact; 
-      this.contactListChangedEvent.next(this.contacts.slice());
+
+    this.maxContactId++;
+
+    newContact.id = this.maxContactId.toString();
+    this.contacts.push(newContact);
+    this.contactListChangedEvent.next(this.contacts.slice());
+  }
+
+  updateContact(originalContact: Contact, newContact: Contact) {
+    if (!originalContact || !newContact) {
+      return;
     }
+
+    let pos = this.contacts.indexOf(originalContact);
+    if (pos < 0) {
+      return;
+    }
+
+    newContact.id = originalContact.id;
+    this.contacts[pos] = newContact;
+    this.contactListChangedEvent.next(this.contacts.slice());
+  }
 }
