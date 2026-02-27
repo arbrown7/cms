@@ -16,7 +16,7 @@ export class DocumentEdit implements OnInit {
   originalDocument: Document;
   document: Document;
   editMode: boolean = false;
-  id: number;
+  id: string;
 
   constructor(
             private documentService: DocumentService,
@@ -34,7 +34,7 @@ export class DocumentEdit implements OnInit {
           return;
         }
 
-        this.originalDocument = this.documentService.getDocument(this.id.toString());
+        this.originalDocument = this.documentService.getDocument(this.id);
 
         if(!this.originalDocument) {
           return;
