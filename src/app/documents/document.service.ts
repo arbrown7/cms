@@ -63,7 +63,7 @@ export class DocumentService {
       return;
    }
    this.documents.splice(pos, 1);
-   this.documentListChangedEvent.next(this.documents.slice());
+   this.storeDocuments();
   }
 
   getMaxId() {
@@ -88,7 +88,7 @@ export class DocumentService {
 
     newDocument.id = this.maxDocumentId.toString();
     this.documents.push(newDocument);
-    this.documentListChangedEvent.next(this.documents.slice());
+    this.storeDocuments();
   }
 
   updateDocument(originalDocument: Document, newDocument: Document) {
@@ -103,6 +103,20 @@ export class DocumentService {
 
     newDocument.id = originalDocument.id;
     this.documents[pos] = newDocument; 
-    this.documentListChangedEvent.next(this.documents.slice());
+    this.storeDocuments();
+  }
+
+  storeDocuments() {
+    const documentsString = JSON.stringify(this.documents);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http
+      .put(
+        'https://wdd-430-cms-61ab4-default-rtdb.firebaseio.com/', documentsString, { headers: headers })
+      .subscribe(response => {
+        this.documentListChangedEvent.next(this.documents.slice());
+    });
   }
 }
