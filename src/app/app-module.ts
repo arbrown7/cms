@@ -20,6 +20,7 @@ import { DocumentEdit } from './documents/document-edit/document-edit';
 import { ContactEdit } from './contacts/contact-edit/contact-edit';
 import { FormsModule } from '@angular/forms';
 import { ContactsFilterPipe } from './contacts/contacts-filter-pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ContactsFilterPipe } from './contacts/contacts-filter-pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
