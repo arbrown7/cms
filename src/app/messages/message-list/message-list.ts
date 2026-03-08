@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Message } from '../message.model';
 import { MessageService } from '../message.service';
 
@@ -11,15 +11,16 @@ import { MessageService } from '../message.service';
 export class MessageList implements OnInit{
   messages: Message[] = [];
 
-  constructor(private messageService: MessageService) {}
+  constructor(private messageService: MessageService,
+              private cd: ChangeDetectorRef) {}
 
   ngOnInit(){
-    this.messages = this.messageService.getMessages();
-    this.messageService.messageChangedEvent
-    .subscribe(
+    this.messageService.messageChangedEvent.subscribe(
       (messages: Message[]) => {
         this.messages = messages;
+        this.cd.detectChanges();
       }
     );
+    this.messageService.getMessages();
   }
 }
