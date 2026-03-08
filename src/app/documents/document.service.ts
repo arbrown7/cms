@@ -9,16 +9,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class DocumentService {
   documents: Document[] = [];
   documentSelectedEvent = new EventEmitter<Document>();
-  //documentChangedEvent = new EventEmitter<Document[]>();
   documentListChangedEvent = new Subject<Document[]>();
   maxDocumentId: number;
 
   constructor(private http: HttpClient) {
-    this.documents = this.getDocuments();
     this.maxDocumentId = this.getMaxId();
   }
 
-  getDocuments(): Document[] {
+  getDocuments(): void {
     this.http.get<Document[]>('https://wdd-430-cms-61ab4-default-rtdb.firebaseio.com/documents.json')
       .subscribe(
         (documents: Document[]) => {
@@ -41,7 +39,6 @@ export class DocumentService {
           console.log(error);
         }
       );
-    return this.documents.slice();
   }
 
   getDocument(id: string): Document | null {
