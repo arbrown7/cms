@@ -15,28 +15,18 @@ export class MessageService {
   }
 
   getMessages(): void {
-        this.http.get<Message[]>('https://wdd-430-cms-61ab4-default-rtdb.firebaseio.com/messages.json')
-          .subscribe(
-            (messages: Message[]) => {
-              this.messages = messages;
-              this.maxMessageId = this.getMaxId();
-    
-              this.messages.sort((a, b) => {
-                if (a.id < b.id) {
-                  return -1;
-                } else if (a.id > b.id) {
-                  return 1;
-                } else {
-                  return 0;
-                }
-              });
-    
-              this.messageChangedEvent.next(this.messages.slice());
-            },
-            (error: any) => {
-              console.log(error);
-            }
-          );
+    this.http.get<Message[]>('http://localhost:3000/messages')
+      .subscribe(
+        (messages: Message[]) => {
+          this.messages = messages;
+          this.maxMessageId = this.getMaxId();
+
+          this.sortAndSend();
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
   }
 
   getMessage(id: string): Message | null {
@@ -48,9 +38,27 @@ export class MessageService {
     return null;
   }
 
-  addMessage(message: Message) {
-    this.messages.push(message);
-    this.storeMessages();
+  addMessage(newMessage: Message) {
+    if (!newMessage) {
+      return;
+    }
+
+    // make sure id of the new Message is empty
+    newMessage.id = '';
+
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+    // add to database
+    this.http.post<{ message: string, newMessage: Message }>('http://localhost:3000/messages',
+      newMessage,
+      { headers: headers })
+      .subscribe(
+        (responseData) => {
+          // add new message to messages
+          this.messages.push(responseData.newMessage);
+          this.sortAndSend();
+        }
+      );
   }
 
   getMaxId() {
@@ -74,9 +82,22 @@ export class MessageService {
 
     return this.http
       .put(
-        'https://wdd-430-cms-61ab4-default-rtdb.firebaseio.com/messages.json', messagesString, { headers: headers })
+        'http://localhost:3000/messages/', messagesString, { headers: headers })
       .subscribe(response => {
         this.messageChangedEvent.next(this.messages.slice());
     });
+  }
+
+  sortAndSend() {
+    this.messages.sort((a, b) => {
+      if (a.id < b.id) {
+        return -1;
+      } else if (a.id > b.id) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    this.messageChangedEvent.next(this.messages.slice());
   }
 }
