@@ -17,12 +17,11 @@ export class DocumentService {
   }
 
   getDocuments(): void {
-    this.http.get<Document[]>('http://localhost:3000/documents')
+    this.http.get<{ message: string, documents: Document[] }>('http://localhost:3000/documents')
       .subscribe(
-        (documents: Document[]) => {
-          this.documents = documents;
+        (responseData) => {
+          this.documents = responseData.documents;
           this.maxDocumentId = this.getMaxId();
-
           this.sortAndSend();
         },
         (error: any) => {

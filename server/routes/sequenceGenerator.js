@@ -6,20 +6,15 @@ var maxContactId;
 var sequenceId = null;
 
 function SequenceGenerator() {
-
   Sequence.findOne()
-    .exec(function(err, sequence) {
-      if (err) {
-        return res.status(500).json({
-          title: 'An error occurred',
-          error: err
-        });
-      }
-
+    .then(sequence => {
       sequenceId = sequence._id;
       maxDocumentId = sequence.maxDocumentId;
       maxMessageId = sequence.maxMessageId;
       maxContactId = sequence.maxContactId;
+    })
+    .catch(err => {
+      console.log('Error initializing sequence generator: ' + err);
     });
 }
 
