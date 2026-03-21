@@ -15,12 +15,11 @@ export class MessageService {
   }
 
   getMessages(): void {
-    this.http.get<Message[]>('http://localhost:3000/messages')
+    this.http.get<{ message: string, messages: Message[] }>('http://localhost:3000/messages')
       .subscribe(
-        (messages: Message[]) => {
-          this.messages = messages;
+        (responseData) => {
+          this.messages = responseData.messages;
           this.maxMessageId = this.getMaxId();
-
           this.sortAndSend();
         },
         (error: any) => {
@@ -49,14 +48,16 @@ export class MessageService {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     // add to database
-    this.http.post<{ message: string, newMessage: Message }>('http://localhost:3000/messages',
+    this.http.post<{ message: string, createdMessage: Message }>('http://localhost:3000/messages',
       newMessage,
       { headers: headers })
       .subscribe(
         (responseData) => {
-          // add new message to messages
-          this.messages.push(responseData.newMessage);
+          this.messages.push(responseData.createdMessage);
           this.sortAndSend();
+        },
+        (error: any) => {
+          console.log(error);
         }
       );
   }
@@ -90,13 +91,7 @@ export class MessageService {
 
   sortAndSend() {
     this.messages.sort((a, b) => {
-      if (a.id < b.id) {
-        return -1;
-      } else if (a.id > b.id) {
-        return 1;
-      } else {
-        return 0;
-      }
+      return parseInt(a.id) - parseInt(b.id);
     });
     this.messageChangedEvent.next(this.messages.slice());
   }

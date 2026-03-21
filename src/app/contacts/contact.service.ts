@@ -18,12 +18,11 @@ export class ContactService {
   }
 
   getContacts(): void {
-    this.http.get<Contact[]>('http://localhost:3000/contacts')
+    this.http.get<{ message: string, contacts: Contact[] }>('http://localhost:3000/contacts')
       .subscribe(
-        (contacts: Contact[]) => {
-          this.contacts = contacts;
+        (responseData) => {
+          this.contacts = responseData.contacts;
           this.maxContactId = this.getMaxId();
-
           this.sortAndSend();
         },
         (error: any) => {
@@ -34,6 +33,15 @@ export class ContactService {
 
   //AI generated code
   getContact(id: string): Contact | null {
+    for (const contact of this.contacts) {
+      if (contact._id === id) {
+        return contact;
+      }
+    }
+    return null;
+  }
+
+  getContactById(id: string): Contact | null {
     for (const contact of this.contacts) {
       if (contact.id === id) {
         return contact;

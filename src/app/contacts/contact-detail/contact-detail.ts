@@ -20,7 +20,7 @@ export class ContactDetail {
   ngOnInit() {
     this.route.params
     .subscribe((params) => {
-      this.selectedContact = this.contactService.getContact(params['id']);
+      this.selectedContact = this.contactService.getContactById(params['id']);
     });
   }
 

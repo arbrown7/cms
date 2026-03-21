@@ -28,7 +28,7 @@ router.post('/', (req, res, next) => {
   const message = new Message({
     id: maxMessageId,
     subject: req.body.subject,
-    msgText: req.body.message,
+    msgText: req.body.msgText,
     sender: new mongoose.Types.ObjectId("69b193189458c860eb9b4cae")
   });
 
@@ -36,7 +36,7 @@ router.post('/', (req, res, next) => {
     .then(createdMessage => {
       res.status(201).json({
         message: 'Message added successfully',
-        message: createdMessage
+        createdMessage: createdMessage
       });
     })
     .catch(error => {
